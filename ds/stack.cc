@@ -12,6 +12,7 @@ class Stack{
     public:
         Stack(size_t sz);
         Stack(const Stack &s);
+        void operator=(const Stack &s);
         ~Stack();
 
         bool isfull() const;
@@ -36,6 +37,25 @@ Stack::Stack(const Stack &s):size(s.size), top(s.top), stack(new T[s.size])
     // copy each element form original stack to this new one
     for(i=0; i <= s.top; ++i)
         stack[i] = s.stack[i];
+}
+
+void Stack::operator=(const Stack &ref)
+{
+    int i;
+    cout<<"Assignement operator overloaded"<<endl;
+    if(this == &ref) {
+        cout<<"Self Assignment"<<endl;
+        return;
+    }
+
+    top = ref.top;
+    size = ref.size;
+    delete []stack;
+    stack = NULL;
+
+    stack = new T[ref.size];
+    for(i=0; i<ref.size; i++)
+        stack[i] = ref.stack[i];
 }
 
 Stack::~Stack()
@@ -106,6 +126,13 @@ int main()
 
     s.display();
     s1.display();
+
+    Stack s2(7);
+    s2 = s;
+
+    s.display();
+    s1.display();
+    s2.display();
 
     return 0;
 }
