@@ -2,6 +2,8 @@
 
 using namespace std;
 
+#define DISPLAY(X) for(int _i=0; _i<X; _i++) cout<<'*'; cout<<endl;
+
 typedef int T;
 
 class Stack{
@@ -133,6 +135,14 @@ int main()
     s.display();
     s1.display();
     s2.display();
+
+    DISPLAY(10);
+    typedef void (Stack::*spush) (int) ;
+    spush sp = &Stack::push;
+    s2.pop();
+    (s2.*sp)(765);
+    s2.display();
+    DISPLAY(10);
 
     return 0;
 }
