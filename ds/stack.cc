@@ -14,7 +14,8 @@ class Stack{
     public:
         Stack(size_t sz);
         Stack(const Stack &s);
-        void operator=(const Stack &s);
+        //void operator=(const Stack &s);
+        Stack& operator= (const Stack &s);
         ~Stack();
 
         bool isfull() const;
@@ -44,7 +45,25 @@ Stack::Stack(const Stack &s):size(s.size), top(s.top), stack(new T[s.size])
         stack[i] = s.stack[i];
 }
 
-void Stack::operator=(const Stack &ref)
+Stack& Stack::operator= (const Stack &s)
+{
+    cout<<"Assignment operator overloaded with our own and new "<<endl;
+    if(this == &s) {
+        cout<<"SelF Assignement done"<<endl;
+        return *this;
+    }
+
+    top = s.top;
+    size = s.size;
+    delete []stack;
+    stack = NULL;
+
+    stack = new T[s.size];
+    for(int i=0; i<s.size; i++)
+        stack[i] = s.stack[i];
+}
+
+/*void Stack::operator=(const Stack &ref)
 {
     int i;
     cout<<"Assignement operator overloaded"<<endl;
@@ -61,7 +80,7 @@ void Stack::operator=(const Stack &ref)
     stack = new T[ref.size];
     for(i=0; i<ref.size; i++)
         stack[i] = ref.stack[i];
-}
+}*/
 
 Stack::~Stack()
 {
@@ -121,7 +140,7 @@ int Stack::max() const
 int main()
 {
     Stack s(5);
-    Stack s1 = s;
+    Stack s1 = s, s2(1);
     int i, item;
 
     s1.display();
@@ -129,14 +148,33 @@ int main()
 
     for(i=0; i<s.max(); i++)
         s.push(i + 76);
+
+    s2 = s;
     
+#if 0
 //  s.push(765);
-    for(i=0; i < s.max(); i++) {
-        s.pop(item);
-        cout<<"Popped item : "<<item<<endl;
+    for(i=0; i < s.max() + 1; i++) {
+        try {
+            //s.push(item);
+            //s.pop(item);
+            //throw exception();
+            //throw 20;
+            cout<<"Popped item : "<<item<<endl;
+        } catch(exception &e) {
+            cout<<"Exception caught as : "<<e.what()<<endl;
+        } 
+        catch(Stack::Underflow) {
+            cout<<"Stack underflow detected"<<endl;
+            break;
+        } catch(Stack::Overflow) {
+            cout<<"Stack overflow detected" <<endl;
+            break;
+        } catch(...) {
+            cout<<"generic Exception caught" <<endl;
+            throw; // rethrowing an exception
+        }
     }
 
-#if 0
     s.display();
     s1.display();
 
