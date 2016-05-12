@@ -21,9 +21,12 @@ class Stack{
         bool isempty() const;
         void display() const;
 
-        void push(int);
-        int pop();
+        void push(const T &element);
+        void pop(T &item);
         int max() const;
+
+        class Overflow{ };
+        class Underflow{ };
 };
 
 Stack::Stack(size_t sz):size(sz), top(-1), stack(new T[sz])
@@ -91,22 +94,23 @@ bool Stack::isempty() const
     return (top == -1 ? 1 : 0);
 }
 
-void Stack::push(int element)
+void Stack::push(const T &element)
 {
     if(isfull()) {
         cout<<"Stack is full, Can't insert"<<endl;
+        throw Stack::Overflow();
         return;
     }
     stack[++top] = element;
 }
 
-int Stack::pop()
+void Stack::pop(T &item)
 {
     if(isempty()) {
         cout<<"Stack empty, nothing to delete"<<endl;
-        return -1;
+        throw Stack::Underflow();
     }
-    return stack[top--];
+    item = stack[top--];
 }
 
 int Stack::max() const
@@ -118,14 +122,21 @@ int main()
 {
     Stack s(5);
     Stack s1 = s;
-    int i;
+    int i, item;
 
     s1.display();
     s.display();
 
     for(i=0; i<s.max(); i++)
         s.push(i + 76);
+    
+//  s.push(765);
+    for(i=0; i < s.max(); i++) {
+        s.pop(item);
+        cout<<"Popped item : "<<item<<endl;
+    }
 
+#if 0
     s.display();
     s1.display();
 
@@ -141,8 +152,14 @@ int main()
     spush sp = &Stack::push;
     s2.pop();
     (s2.*sp)(765);
+    (s2.*sp)(775);
     s2.display();
+
+    Stack s3(3);
+    s3.pop();
+
     DISPLAY(10);
+#endif
 
     return 0;
 }
