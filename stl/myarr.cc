@@ -41,13 +41,13 @@ using namespace mine;
 template <typename T>
 Array<T>::Array()
 {
-    cout<<this<<" : Array object created"<<endl;
+    //cout<<this<<" : Array object created"<<endl;
 }
 
 template <typename T>
 Array<T>::~Array()
 {
-    cout<<this<<" : Array object destructed"<<endl;
+    //cout<<this<<" : Array object destructed"<<endl;
 }
 
 template <typename T>
@@ -105,12 +105,11 @@ int main()
     mine::Array<int> arr;
     arr.append(12);
     arr.append(13);
-    cout<<arr<<endl;
+    cout<<"arr contents : "<<arr<<endl;
 
     mine::Array<string> sarr;
     sarr.append("Hello");
     sarr.append("Hi");
-    cout<<sarr<<endl;
 
     try {
         cout<<"item : "<<sarr[1]<<endl;
@@ -118,8 +117,13 @@ int main()
         cout<<"Out of range : "<<oor.what()<<endl;
     }
     sarr[1] = "Helllllo";
-    sarr[2] = "Helllllo";
-    cout<<sarr<<endl;
+    sarr[0] = sarr[1];
+
+    cout<<"sarr contents : "<<sarr<<endl;
+
+    mine::Array<int> iarr;
+    iarr = arr;
+    cout<<"iarr contents : "<<iarr<<endl;
 
     return 0;
 }
