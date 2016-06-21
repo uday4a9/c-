@@ -30,6 +30,11 @@ int main(int argc, char **argv)
                         it != counter.end();
                         ++it)
         cout<<it->first<<" => "<<it->second<<endl;
+    
+    char c = 'z';
+    Mymap::iterator it1 = counter.find(c);
+    if(it1 == counter.end())
+        cout<<"Character not found"<<endl;
 
     return 0;
 }
