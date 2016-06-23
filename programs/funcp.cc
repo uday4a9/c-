@@ -63,6 +63,7 @@ int main(int argc, char **argv)
 
     valp v = &A::getval;
     cout<<"Vlaue using function pointer : "<<(aobj.*v)()<<endl;
+    cout<<"Vlaue using function pointer : "<<(aobj.*v)()<<endl;
 
     return 0;
 }

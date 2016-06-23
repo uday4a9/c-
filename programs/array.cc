@@ -35,6 +35,7 @@ class Array
 			cout<<"Enter "<<ar.size<<" Elements : ";
 			for(int i=0;i<ar.size;i++)
 				ip>>ar.ptr[i];
+            return ip;
 		}
 
 		Array(const Array &ar) : size(ar.size)
@@ -48,7 +49,7 @@ class Array
 
 		const Array& operator=(const Array &right)
 		{
-			cout<<"overloaded addignement operator"<<endl;
+			cout<<"overloaded assignement operator"<<endl;
 			if(&right != this)
 			{
 				if(size != right.size)

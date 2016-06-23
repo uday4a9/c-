@@ -36,5 +36,9 @@ int main(int argc, char **argv)
     if(it1 == counter.end())
         cout<<"Character not found"<<endl;
 
+    for(Mymap::iterator it = counter.begin();
+                        it != counter.end();
+                        ++it)
+        cout<<it->first<<" => "<<it->second<<endl;
     return 0;
 }
