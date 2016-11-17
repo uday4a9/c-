@@ -48,19 +48,20 @@ rat operator+(rat ref1, rat ref2)
 
 int main(int argc, char **argv)
 {
-     rat r1(2, 3), r2(3, 4);
-     rat r3 = r1 + r2;
-     cout<<"r1 : "<<r1<<", r2 : "<<r2<<endl;
-     cout<<"r3 : "<<r3<<endl;
+    rat r1(2, 3), r2(3, 4);
+    rat r3 = r1 + r2;
+    cout<<"r1 : "<<r1<<", r2 : "<<r2<<endl;
+    cout<<"r3 : "<<r3<<endl;
 
-     rat r4 = 1;    // implicit constructor, Which converts implicit method to
-                    // to this class object(By default it invokes defaultt constructor
+    rat r4 = 1;    // implicit constructor, Which converts implicit method to
+                // to this class object(By default it invokes defaultt constructor
 
-     cout<<"r4 : "<<r4<<endl;
-     r4.val();
-     rat::val();
+    cout<<"r4 : "<<r4<<endl;
+    r4.val();
+    rat::val();
 
-     cout<<"size : "<<sizeof(rat)<<endl;
+    cout<<"size : "<<sizeof(rat)<<endl;
+    cout<<12 + 23<<endl;
 
     return 0;
 }

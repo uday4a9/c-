@@ -39,6 +39,36 @@ class man
 			cout <<"non-constant dis function"<<endl;
 		}
 
+    man(int val)
+    {
+        i = val;
+    }
+
+    man(man &ref)
+    {
+        cout<<"copy constructor invoked"<<endl;
+        i = ref.i;
+    }
+
+    friend ostream& operator<<(ostream &op, man &dat)
+    {
+        op<<"i : "<<dat.i<<endl;
+        return op;
+    }
+
+    man& operator=(man &right)
+    {
+        cout<<"Assignement operator overloaded"<<endl;
+        if(this == &right) {
+            cout<<"self assignment"<<endl;
+            return *this;
+        }
+        this->i = right.i;
+        return *this;
+
+    }
+
+
 	private:
 		int i;
 };
@@ -52,7 +82,17 @@ int main(int argc, char **argv)
 */
 	const man m1;
 	//man m1;
-	m1.dis();
+	//m1.dis();
+
+  man m3(20);
+//  m3.print();
+  cout<<m3;
+  man m4=m3;
+  //m4.print();
+  cout<<m4;
+
+  m3 = m4;
+  cout<<m4;
 
 	return 0;
 }
